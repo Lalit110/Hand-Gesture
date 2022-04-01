@@ -35,3 +35,38 @@ function speak(){
     var utterthis = new SpeechSynthesisUtterance(speak_data1);
     synth.speak(utterthis);
 }
+
+function check(){
+
+    img = document.getElementById("image");
+    classifier.classify(img , gotResults);
+}
+
+function gotResults(error , results){
+
+    if(error){
+        console.error(error);
+    }
+    else{
+        console.log(results);
+        document.getElementById("result_symbol_name").innerHTML = results[0].label;
+        prediction1 = results[0].label;
+        speak();
+
+        if(results[0].label == "Victory"){
+
+            document.getElementById("update_gesture").innerHTML = "&#128522";
+        }
+
+        if(results[0].label == "Best"){
+
+            document.getElementById("update_gesture").innerHTML = "&#128532";
+        }
+
+        if(results[0].label == "Amazing"){
+
+            document.getElementById("update_gesture").innerHTML = "&#128559";
+        }
+
+    }
+}
