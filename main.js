@@ -31,8 +31,8 @@ function modelLoaded(){
 function speak(){
 
     var synth = window.speechSynthesis;
-    speak_data1 = "The First Prediction Is" + prediction1;
-    var utterthis = new speechSynthesisUtterance(speak_data1);
+    speak_data1 = prediction1;
+    var utterthis = new SpeechSynthesisUtterance(speak_data1);
     synth.speak(utterthis);
 }
 
@@ -50,23 +50,25 @@ function gotResults(error , results){
     else{
         console.log(results);
         document.getElementById("result_symbol_name").innerHTML = results[0].label;
-        prediction1 = results[0].label;
-        speak();
+        prediction1 ="";
 
         if(results[0].label == "Victory"){
 
-            document.getElementById("update_gesture").innerHTML = "&#128522";
+            prediction1 = "This Is The Symbol Of Victory";
+            document.getElementById("update_gesture").innerHTML = "&#9996";
         }
 
         if(results[0].label == "Best"){
-
-            document.getElementById("update_gesture").innerHTML = "&#128532";
+            
+            prediction1 = "This Is The Symbol Of All The Best";
+            document.getElementById("update_gesture").innerHTML = "&#128077";
         }
 
         if(results[0].label == "Amazing"){
-
-            document.getElementById("update_gesture").innerHTML = "&#128559";
+            
+            prediction1 = "This Is The Symbol Of Amazing";
+            document.getElementById("update_gesture").innerHTML = "&#128076";
         }
-
+        speak();
     }
 }
